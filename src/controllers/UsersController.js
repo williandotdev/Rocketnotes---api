@@ -51,12 +51,12 @@ class UsersController {
 
      const userWithUpdatedEmail = await database.get("SELECT * FROM users WHERE email = (?)", [email])
 
-     if(userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
+     if(userWithUpdatedEmail && userWithUpdatedEmail.id !== id) {
       throw new AppError("Este e-mail já está em uso.")
      }
 
-     user.name = name
-     user.email= email
+     user.name = name ?? user.name;
+     user.email= email ?? user.email;
 
     if(password && !old_password) {
          throw new AppError("Você precisa informar a senha antiga para alterar.");
@@ -77,14 +77,15 @@ class UsersController {
       name = ?,
       email = ?,
       password = ?,
-      updated_at = ?
+      updated_at = DATETIME('now')
       WHERE id = ?`, 
-      [user.name, user.email,user.password, new Date(), id]
+      [user.name, user.email,user.password, id]
     )
 
     return response.json()
   }
 }
+
 
 
 module.exports = UsersController; // Exporta a classe UsersController.
