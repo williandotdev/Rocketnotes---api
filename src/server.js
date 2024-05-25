@@ -1,18 +1,22 @@
 require("express-async-errors"); // Habilita o tratamento de erros assíncronos no Express.
 
 const migrationsRun = require("./database/sqlite/migrations"); // Importa e executa as migrações do banco de dados SQLite.
-
 const AppError = require("./utils/AppError"); // Importa a classe de erro personalizado.
+const uploadConfig = require("./configs/upload");
 
+const cors = require("cors");
 const express = require("express"); // Importa o módulo Express.
-
 const routes = require("./routes/"); // Importa as rotas definidas na aplicação.
 
 migrationsRun(); // Executa as migrações do banco de dados.
 
 const app = express(); // Cria uma instância do Express.
 
+app.use(cors());
+
 app.use(express.json()); // Define o middleware para parsear JSON no corpo das requisições.
+
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
 
 app.use(routes); // Usa as rotas importadas na aplicação.
 
