@@ -1,4 +1,5 @@
 require("express-async-errors"); // Habilita o tratamento de erros assíncronos no Express.
+require("dotenv/config");
 
 const migrationsRun = require("./database/sqlite/migrations"); // Importa e executa as migrações do banco de dados SQLite.
 const AppError = require("./utils/AppError"); // Importa a classe de erro personalizado.
@@ -41,6 +42,6 @@ app.use((error, request, response, next) => {
     });
 });
 
-const PORT = 3333; // Define a porta onde o servidor vai rodar.
+const PORT = process.env.PORT || 3333; // Define a porta onde o servidor vai rodar.
 
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`)); // Inicia o servidor e escuta na porta definida.
