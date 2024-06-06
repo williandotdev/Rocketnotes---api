@@ -1,6 +1,6 @@
 const createUsers = `
     Create table if not exists users (
-        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         name VARCHAR,
         email VARCHAR,
         password VARCHAR,
@@ -8,6 +8,6 @@ const createUsers = `
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
-`;
+`
 
-module.exports = createUsers; //Exportando
+module.exports = createUsers //Exportando
