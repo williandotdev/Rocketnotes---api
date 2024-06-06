@@ -12,7 +12,6 @@ class SessionsController {
 
     // Busca o usuário no banco de dados pelo e-mail.
     const user = await knex("users").where({ email }).first()
-    console.log(user)
 
     // Se o usuário não for encontrado, lança um erro de autenticação.
     if (!user) {
