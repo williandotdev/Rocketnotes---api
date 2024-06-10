@@ -1,11 +1,11 @@
-const fs = require("fs");
+const fs = require("fs"); //do node para manipular arquivos 
 const path = require("path");
 const uploadConfig = require("../configs/upload");
 
 class DiskStorage{
     async saveFile(file){
         await fs.promises.rename(
-            path.resolve(uploadConfig.TMP_FOLDER, file).
+            path.resolve(uploadConfig.TMP_FOLDER, file),
             path.resolve(uploadConfig.UPLOADS_FOLDER, file)
         );
 

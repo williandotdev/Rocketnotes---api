@@ -25,8 +25,8 @@ class UsersController {
         }
         const hashedPassword = await hash(password, 8);// Criptografa a senha do usuário antes de armazená-la no banco de dados.
         
-        await database.run("INSERT INTO users (name, email, password) VALUES(?,?,?)", [name, email, hashedPassword]);// Insere um novo usuário no banco de dados com a senha criptografada.
-       
+        
+await database.run("INSERT INTO users (name, email, password) VALUES(?,?,?)", [name, email, hashedPassword]);// Insere um novo usuário no banco de dados com a senha criptografada.       
         return response.status(201).json(); // Retorna uma resposta indicando que o usuário foi criado com sucesso.
     }
 
